@@ -9,7 +9,7 @@
   </p>
 </p>
   
-<a href="https://arxiv.org/abs/2310.15970"> <img src="https://img.shields.io/badge/PDF-Arxiv-teal"></a> ![Downloads](https://img.shields.io/github/downloads/csalt-research/accented-codebooks-asr/total) ![Contributors](https://img.shields.io/github/contributors/csalt-research/accented-codebooks-asr?color=dark-green) ![Forks](https://img.shields.io/github/forks/csalt-research/accented-codebooks-asr?style=social) ![Stargazers](https://img.shields.io/github/stars/csalt-research/accented-codebooks-asr?style=social) 
+<a href="https://arxiv.org/abs/2310.15970"> <img src="https://img.shields.io/badge/PDF-Arxiv-teal"></a> ![Downloads](https://img.shields.io/github/downloads/csalt-research/accented-codebooks-asr/total.svg) ![Contributors](https://img.shields.io/github/contributors/csalt-research/accented-codebooks-asr?color=dark-green) ![Forks](https://img.shields.io/github/forks/csalt-research/accented-codebooks-asr?style=social) ![Stargazers](https://img.shields.io/github/stars/csalt-research/accented-codebooks-asr?style=social) 
 
 ## Table Of Contents
 
