@@ -13,13 +13,13 @@ git clone https://github.com/csalt-research/accented-codebooks-asr.git
 ```
 * Install the required python packages:
 ```sh
-pip install -r data/requirements.txt
+pip install -r data/accented-codebooks-asr/requirements.txt
 ```
 
 ### Running the script
 Go to the data folder and execute `create_data.sh` script.
 ```sh
-cd data && ./create_data.sh
+cd accented-codebooks-asr/data && ./create_data.sh
 ```
 
 ## Dataset Statistics

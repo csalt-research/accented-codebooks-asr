@@ -44,26 +44,26 @@ The repository contains two folders:
 ### Prerequisites and Installation
 
 * ESPnet installation: Follow the instructions [here](https://espnet.github.io/espnet/installation.html).
+* Clone the repository containing our code and dataset.
+```sh
+git clone https://github.com/csalt-research/accented-codebooks-asr.git
+```
 * Additionally, to run the dataset creation script, run the following:
 ```sh
-pip install -r data/requirements.txt
+pip install -r accented-codebooks-asr/data/requirements.txt
 ```
 
 ### Training
 
-1. Clone the repository
+1. Extract the csvs from the `tar` file in data folder
 ```sh
-git clone https://github.com/csalt-research/accented-codebooks-asr.git
+tar  -xvzf accented-codebooks-asr/data/dataset.tar.gz 
 ```
-2. Extract the csvs from dataset
+2. Copy the files from espnet_code into ESPnet egs
 ```sh
-tar  -xvzf data/dataset.tar.gz 
+cp -r accented-codebooks-asr/espnet_code/* <espnet_root_folder>/egs/commonvoice/asr1
 ```
-3. Copy the files from espnet_code into ESPnet egs
-```sh
-cp -r espnet_code/* <espnet_root_folder>/egs/commonvoice/asr1
-```
-4. Enter the path to the the directory hosting our splits in `run.sh`
+3. Enter the path to the the directory hosting our splits in `run.sh`
 ```python
 csvdir=  # Path to the directory hosting all our csvs.
 ```
