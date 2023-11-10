@@ -79,7 +79,7 @@ if [ ! -d "$csvdir" ]; then
   exit 1;
 fi
 
-train_set=mcv_train
+train_set=mcv_train_random_100h
 train_dev=mcv_dev
 test_set=
 recog_set="mcv_test"
@@ -95,7 +95,7 @@ if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
     ### But you can utilize Kaldi recipes in most cases
 
     ## Create kaldi styles folders for train, dev and test sets
-    local/create_mcv_data.sh $csvdir/train.tsv ${datadir}/cv-corpus-7.0-2021-07-21/${lang}/clips/ data/${train_set}
+    local/create_mcv_data.sh $csvdir/train_random_100h.tsv ${datadir}/cv-corpus-7.0-2021-07-21/${lang}/clips/ data/${train_set}
     local/create_mcv_data.sh $csvdir/dev_small.tsv ${datadir}/cv-corpus-7.0-2021-07-21/${lang}/clips/ data/${train_dev}
     local/create_mcv_data.sh $csvdir/test_small.tsv ${datadir}/cv-corpus-7.0-2021-07-21/${lang}/clips/ data/${recog_set}
 
@@ -166,7 +166,7 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
     done
 
     echo "Add accent labels to json files"
-    python scripts/add_accent_info.py --input-csv $csvdir/train.tsv  --input-json ${feat_tr_dir}/data_${bpemode}${nbpe}.json --output-json ${feat_tr_dir}/data_${bpemode}${nbpe}_with_accent.json 
+    python scripts/add_accent_info.py --input-csv $csvdir/train_random_100h.tsv  --input-json ${feat_tr_dir}/data_${bpemode}${nbpe}.json --output-json ${feat_tr_dir}/data_${bpemode}${nbpe}_with_accent.json 
     python scripts/add_accent_info.py --input-csv $csvdir/dev_small.tsv  --input-json ${feat_dt_dir}/data_${bpemode}${nbpe}.json --output-json ${feat_dt_dir}/data_${bpemode}${nbpe}_with_accent.json 
 
 fi
@@ -208,7 +208,7 @@ if [ -z ${tag} ]; then
 else
     expname=${train_set}_${backend}_${tag}
 fi
-expdir=exp/ours_ca_full
+expdir=exp/ours_ca_random_100h
 mkdir -p ${expdir}
 
 if [ ${stage} -le 4 ] && [ ${stop_stage} -ge 4 ]; then

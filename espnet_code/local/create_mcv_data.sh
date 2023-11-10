@@ -23,7 +23,7 @@ if [ ! -d "$clips_folder" ]; then
   exit 1
 fi
 
-head $datafile
+echo "Creating ${destination}"
 
 # Generate `text` file
 cat $datafile | awk -F'\t' 'BEGIN{FPAT = "([^\t]+)|(\"[^\"]+\")"} NR>1 { sub(".mp3","",$2);gsub("-"," ",$3);gsub("[^a-zA-Z0-9 ]","",$3); print $1"-"$2" "toupper($3)}' | sort > $destination/text

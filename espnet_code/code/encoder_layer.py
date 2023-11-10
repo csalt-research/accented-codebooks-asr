@@ -166,7 +166,7 @@ class EncoderLayer(nn.Module):
                 x = self.norm_codebook(x)
                 
             residual = x
-            codebook_context, _ = self.codebook_attention(x,codebooks,codebooks,None)
+            codebook_context = self.codebook_attention(x,codebooks,codebooks,None)
             
             x = residual + stoch_layer_coeff * self.dropout(codebook_context)
                 

@@ -252,13 +252,14 @@ class Encoder(torch.nn.Module):
         
         if self.use_codebooks:
             self.no_codebooks = codebooks_per_accent
+            self.no_accents = no_accents
             self.codebook_embedding = torch.nn.ModuleList([
                 torch.nn.Embedding(
                 num_embeddings = self.no_codebooks, 
                 embedding_dim = attention_dim
             ) for _ in range(no_accents)])
             
-            logging.warn(f"Using codebooks layers: {self.codebook_cross_attention_layers}, {self.no_codebooks}, {self.no_accents}")
+            logging.warn(f"Using codebooks layers: {codebook_cross_attention_layers}, {self.no_codebooks}, {self.no_accents}")
 
     def forward(self, xs, masks, accent_labels):
         """Encode input sequence.

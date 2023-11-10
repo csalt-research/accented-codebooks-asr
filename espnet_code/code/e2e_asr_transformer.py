@@ -119,11 +119,7 @@ class E2E(ASRInterface, torch.nn.Module):
                 int(i) for i in args.intermediate_ctc_layer.split(",")
             ]
         
-        self.codebook_cross_attention_layers = []
-        if args.cross_attention_layers != "":
-            self.codebook_cross_attention_layers = [
-                int(i) for i in args.cross_attention_layers.split(",")
-            ]
+        self.codebook_cross_attention_layers = args.codebook_cross_attention_layers
 
         self.encoder = Encoder(
             idim=idim,
