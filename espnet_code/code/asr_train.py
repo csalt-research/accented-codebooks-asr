@@ -132,6 +132,8 @@ def get_parser(parser=None, required=True):
         help="model defined module (default: espnet.nets.xxx_backend.e2e_asr:E2E)",
     )
     # encoder
+    parser.add_argument("--path-to-hubert-checkpoint", type=str, help="directory containing hubert checkoint")
+    
     parser.add_argument(
         "--num-encs", default=1, type=int, help="Number of encoders in the model."
     )

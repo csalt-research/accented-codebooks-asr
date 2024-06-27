@@ -29,6 +29,9 @@ patience: 0
 epochs: 50
 dropout-rate: 0.1
 
+# hubert specific setting
+path-to-hubert-checkpoint: <placeholder> # Replace <placeholder> with the path to your hubert checkpoint directory
+
 # transformer specific setting
 backend: pytorch
 model-module: "e2e_asr_conformer:E2E"

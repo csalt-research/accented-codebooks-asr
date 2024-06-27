@@ -10,7 +10,7 @@ Refer to: https://arxiv.org/abs/2005.08100
 
 """
 
-from encoder import Encoder
+from encoder import HubertEncoder
 from e2e_asr_transformer import E2E as E2ETransformer
 from espnet.nets.pytorch_backend.conformer.argument import (
     add_arguments_conformer_common,  # noqa: H301
@@ -55,30 +55,7 @@ class E2E(E2ETransformer):
         # Check the relative positional encoding type
         args = verify_rel_pos_type(args)
 
-        self.encoder = Encoder(
-            idim=idim,
-            attention_dim=args.adim,
-            attention_heads=args.aheads,
-            linear_units=args.eunits,
-            num_blocks=args.elayers,
-            input_layer=args.transformer_input_layer,
-            dropout_rate=args.dropout_rate,
-            positional_dropout_rate=args.dropout_rate,
-            attention_dropout_rate=args.transformer_attn_dropout_rate,
-            pos_enc_layer_type=args.transformer_encoder_pos_enc_layer_type,
-            selfattention_layer_type=args.transformer_encoder_selfattn_layer_type,
-            activation_type=args.transformer_encoder_activation_type,
-            macaron_style=args.macaron_style,
-            use_cnn_module=args.use_cnn_module,
-            zero_triu=args.zero_triu,
-            cnn_module_kernel=args.cnn_module_kernel,
-            stochastic_depth_rate=args.stochastic_depth_rate,
-            intermediate_layers=self.intermediate_ctc_layers,
-            ctc_softmax=self.ctc.softmax if args.self_conditioning else None,
-            conditioning_layer_dim=odim,
-            use_codebooks=args.use_codebooks,
-            no_accents=args.no_accents,
-            codebooks_per_accent=args.codebooks_per_accent,
-            codebook_cross_attention_layers=self.codebook_cross_attention_layers,
+        self.encoder = HubertEncoder(
+            model_file_name = 'checkpoint_best.pt', 
+            hubert_dir_path = args.path_to_hubert_checkpoint
         )
-        self.reset_parameters(args)
