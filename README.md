@@ -2,8 +2,8 @@
   <a href="https://github.com/csalt-research">
     <img src="https://avatars.githubusercontent.com/u/43694569?s=200&v=4" alt="CSALT @ IITB" width="150" height="150">
   </a>
-  <h3 align="center">Accented Speech Recognition With Accent-specific Codebooks</h3>
-  <p align="center"> Empirical Methods in Natural Language Processing(EMNLP) 2023
+  <h3 align="center">Improving Self-supervised Pre-training using Accent-Specific Codebooks</h3>
+  <p align="center"> Interspeech 2024
     <br/>
     <br/>
   </p>
@@ -20,34 +20,35 @@
 * [Roadmap](#roadmap)
 * [Dataset Statistics](#dataset-statistics)
 * [Contributing](#contributing)
-* [Authors](#authors)
+* [Contributors](#contributors)
 * [Citation](#citation)
 * [License](#license)
 
 ## About The Repository
 
-This repository hosts the artefacts pertaining to [our paper](https://arxiv.org/abs/2310.15970) **<samp>Accented Speech Recognition With Accent-specific Codebooks</samp>** accepted to the main conference of  ***EMNLP 2023***.
+This repository hosts the artefacts pertaining to [our paper](https://arxiv.org/abs/2407.03734) **<samp>Improving Self-supervised Pre-training using Accent-Specific Codebooks</samp>** accepted to the main conference of  ***Interspeech 2024***. This work is an extension of our [previous work](https://arxiv.org/abs/2310.15970) **<samp>Accented Speech Recognition With Accent-specific Codebooks</samp>** which was accepted at the main conference of ***EMNLP 2023***.
 
-The main contributions of our paper are as follows:
-
-:mag_right:  A new <samp>accent adaptation technique</samp> that uses a set of *`learnable codebooks`* and a new *`beam-search decoding`* algorithm to achieve significant performance improvement on both seen and unseen accents. 
-
-:white_check_mark: <samp>Reproducible splits</samp> on Commonvoice dataset for *accented ASR* setup to facilitate fair comparisons across existing and new accent adaptation techniques.
+The main contribution of this paper :mag_right: is to extend the <samp>accent adaptation technique</samp> that uses a set of *`learnable codebooks`* and a modified *`beam-search decoding`* algorithm to both self-supervised pre-training and ASR finetuning. 
 
 ## Getting Started
 
 The repository contains two folders:
-* [<kbd>data :file_folder: </kbd>](https://github.com/csalt-research/accented-codebooks-asr/tree/main/data) - Contains the <samp>train</samp>, <samp>dev</samp> and <samp>test</samp> splits used for all our experiments. Additionally, the folder also contians scripts used to generate those splits. More details can be found [here](https://github.com/csalt-research/accented-codebooks-asr/tree/main/data).
-*  [<kbd>espnet_code :file_folder: </kbd>](https://github.com/csalt-research/accented-codebooks-asr/tree/main/espnet_code) - Contains code to run our experiments on [ESPnet](https://github.com/espnet/espnet) toolkit. Detailed instruction on how to run our experiments can be found [here](#prerequisites-and-installation).
+* [<kbd>fairseq code :file_folder: </kbd>](https://github.com/csalt-research/accented-codebooks-asr/tree/accented-pretraining/fairseq_code) - Contains code to run our SSL experiments on [Fairseq](https://github.com/facebookresearch/fairseq) toolkit. Detailed instruction on how to run our experiments can be found [here](https://github.com/csalt-research/accented-codebooks-asr/tree/accented-pretraining/fairseq_code).
+*  [<kbd>espnet_code :file_folder: </kbd>](https://github.com/csalt-research/accented-codebooks-asr/tree/main/espnet_code) - Contains code to run our experiments on [ESPnet](https://github.com/espnet/espnet) toolkit. Detailed instruction on how to run ASR experiments can be found [here](#prerequisites-and-installation).
 
 
 ### Prerequisites and Installation
 
-* ESPnet installation: Follow the instructions [here](https://espnet.github.io/espnet/installation.html).
-* Clone the repository containing our code and dataset.
+* For fairseq related installation, follow the instructions [here](https://github.com/csalt-research/accented-codebooks-asr/tree/accented-pretraining/fairseq_code).
+* FOr ESPnet related installation, follow the instructions [here](https://espnet.github.io/espnet/installation.html).
+* Finally, clone the repository containing our code and dataset.
 ```sh
 git clone https://github.com/csalt-research/accented-codebooks-asr.git
 ```
+```sh
+git checkout accented-pretraining 
+```
+
 * Additionally, to run the dataset creation script, run the following:
 ```sh
 pip install -r accented-codebooks-asr/data/requirements.txt
@@ -59,18 +60,21 @@ pip install -r accented-codebooks-asr/data/requirements.txt
 ```sh
 tar  -xvzf accented-codebooks-asr/data/dataset.tar.gz 
 ```
-2. Copy the files from espnet_code into ESPnet egs
-```sh
-cp -r accented-codebooks-asr/espnet_code/* <espnet_root_folder>/egs/commonvoice/asr1
-```
-3. Enter the path to the the directory hosting our splits in `run.sh`
-```python
-csvdir=  # Path to the directory hosting all our csvs.
-```
-4. Run the script
-```sh
-./run.sh
-```
+2. For experiments related to Fairseq, please refer to [these](https://github.com/csalt-research/accented-codebooks-asr/tree/accented-pretraining/fairseq_code) instructions.
+
+3. Instructions related to ESPnet training:
+   * Copy the files from espnet_code into ESPnet egs
+    ```sh
+    cp -r accented-codebooks-asr/espnet_code/* <espnet_root_folder>/egs/commonvoice/asr1
+    ```
+    * Enter the path to the the directory hosting our splits in `run.sh`
+    ```python
+    csvdir=  # Path to the directory hosting all our csvs.
+    ```
+    * Run the script
+    ```sh
+    ./run.sh
+    ```
 
 ## Dataset Statistics
 The statistics of <samp>train</samp>, <samp>dev</samp> and <samp>test</samp> splits used in our experiments are as follows:
@@ -113,9 +117,11 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/NewFeature`)
 5. Open a Pull Request
 
-## Authors
+## Contributors
 
 * **Darshan Prabhu** - *M.Tech, CSE, IIT Bombay* - [Darshan Prabhu](https://www.linkedin.com/in/darshan-prabhu/)
+* **Abhishek Kumar Gupta** - *M.Tech, CSE, IIT Bombay* - [Abhishek Kumar Gupta]([https://www.linkedin.com/in/darshan-prabhu/](https://www.linkedin.com/in/iam-abhishek/))
+* **Omkar Nitsure** - *B.Tech, EE, IIT Bombay* - [Omkar Nitsure]([https://www.linkedin.com/in/darshan-prabhu/](https://www.linkedin.com/in/omkar-nitsure/))
 * **Preethi Jyothi** - *Associate Professor, CSE, IIT Bombay* - [Preethi Jyothi](https://www.cse.iitb.ac.in/~pjyothi/)
 * **Sriram Ganapathy** - *Associate Professor, EE, IISc Bangalore* - [Sriram Ganapathy](http://www.leap.ee.iisc.ac.in/sriram/)
 * **Vinit Unni** - *Ph.D, CSE, IIT Bombay* - [Vinit Unni](https://www.linkedin.com/in/vinit-unni/)
@@ -123,7 +129,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Citation
 
-If you use this code for your research, please consider citing our work.
+If you use this code for your research, please consider citing our works.
 
 ```bibtex
 @misc{prabhu2023accented,
@@ -133,6 +139,17 @@ If you use this code for your research, please consider citing our work.
       eprint={2310.15970},
       archivePrefix={arXiv},
       primaryClass={cs.CL}
+}
+```
+```bibtex
+@misc{prabhu2024improvingselfsupervisedpretrainingusing,
+      title={Improving Self-supervised Pre-training using Accent-Specific Codebooks}, 
+      author={Darshan Prabhu and Abhishek Gupta and Omkar Nitsure and Preethi Jyothi and Sriram Ganapathy},
+      year={2024},
+      eprint={2407.03734},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2407.03734}, 
 }
 ```
 
