@@ -12,7 +12,7 @@ The repository contains the modified version of Hubert pre-training implementati
 
 2. Move to the pre-training directory:
     ```sh
-    cd pretraining
+    cd fairseq_code
     ```
 
 3. Install all the requirements of Fairseq:
